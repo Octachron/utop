@@ -149,6 +149,16 @@ module Exp = struct
 #else
   let fun_ ~loc p e = Exp.fun_ ~loc Nolabel None p e
 #endif
+
+#if OCAML_VERSION >= (5, 5, 0)
+  let letmodule ~loc name me e =
+    let mb = Mb.mk name me in
+    Exp.struct_item ~loc (Str.module_ mb) e
+#else
+  let letmodule ~loc name me e = Exp.letmodule ~loc name me e
+#endif
+
+
 end
 
 let abstract_type_kind =

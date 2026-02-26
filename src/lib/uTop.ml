@@ -360,7 +360,7 @@ let check_phrase phrase =
           with_default_loc loc
             (fun () ->
               let punit = (Pat.construct unit None) in
-              let body = (Exp.letmodule ~loc:loc
+              let body = (UTop_compat.Exp.letmodule ~loc:loc
                       (with_loc loc (Some "_"))
                       (Mod.structure (item :: items))
                       (Exp.construct unit None)) in
